@@ -279,8 +279,17 @@ function generarInformeEvolucio() {
                     ${renderGrupUnitats("🏅 MASTERED", counts.mastered, "blue")}
                 </div>
             </div>`;
-  });
-
+  }); // <--- AQUÍ ACABA EL BUCLE
+  // 3. TANQUEM EL CONTENIDOR I AFEGIM EL BOTÓ (FORA DEL BUCLE)
+  html += `</div> 
+        <div style="margin-top: 40px; padding: 20px; border-top: 1px solid #eee; text-align: center;">
+            <p style="color: #999; font-size: 0.75rem; margin-bottom: 10px;">
+                Warning: This will permanently erase all your progress and study history.
+            </p>
+            <button onclick="netejarHistoric()" class="btn-reset-danger">
+                Reset All Progress History
+            </button>
+        </div>`;
   container.innerHTML = html + `</div>`;
 }
 
@@ -361,3 +370,21 @@ function netejarHistoric() {
 }
 
 window.onload = inicialitzarDades;
+
+function netejarHistoric() {
+  const confirmacio = confirm(
+    "Are you sure you want to delete ALL your progress? This action cannot be undone.",
+  );
+
+  if (confirmacio) {
+    // Esborrem les claus específiques del nostre projecte
+    localStorage.removeItem("angles_historic");
+    localStorage.removeItem("angles_index_actual");
+
+    // Opcional: si vols esborrar-ho tot (incloent vocab builder si en tens)
+    // localStorage.clear();
+
+    alert("History cleared successfully.");
+    location.reload(); // Recarreguem per reiniciar l'estat de l'App
+  }
+}

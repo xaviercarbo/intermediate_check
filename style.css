@@ -739,3 +739,25 @@ button.control-btn:hover {
   font-size: 0.7rem;
   margin-left: 4px;
 }
+
+.btn-reset-danger {
+  background: #fff;
+  color: #cc0000;
+  border: 1px solid #cc0000;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-reset-danger:hover {
+  background: #fff5f5;
+  box-shadow: 0 2px 8px rgba(204, 0, 0, 0.1);
+}
+
+.btn-reset-danger:active {
+  background: #ffebee;
+  transform: translateY(1px);
+}
