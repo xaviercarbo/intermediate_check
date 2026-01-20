@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="ca">
+  <head>
+    <meta charset="UTF-8" />
+    <title>
+      Learning English - Grammar - Check Level Cambridge Intermediate
+    </title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="bbc-header">
+      <div class="container">
+        <div class="logo">
+          B2 <span>- Check Level Cambridge Intermediater</span>
+        </div>
+      </div>
+    </header>
+
+    <nav class="main-nav">
+      <div class="container" style="display: flex; justify-content: center">
+        <button
+          onclick="canviarVista('PRACTICE')"
+          id="nav-practice"
+          class="active"
+        >
+          PRACTICE
+        </button>
+        <button onclick="canviarVista('REVISION')" id="nav-revision">
+          REVISION
+        </button>
+        <button onclick="canviarVista('PROGRESS')" id="nav-progress">
+          PROGRESS
+        </button>
+      </div>
+    </nav>
+
+    <main class="container">
+      <div id="quiz-container"></div>
+
+      <section id="seccio-evolucio" style="display: none">
+        <div class="question-block">
+          <h2 class="issue-title">📈 Your Progress</h2>
+          <div id="stats-resum"></div>
+          <!--        <button
+            class="control-btn"
+            onclick="netejarHistoric()"
+            style="background: var(--bbc-red); margin-top: 20px"
+          >
+            Reset History
+          </button>-->
+        </div>
+      </section>
+    </main>
+
+    <script src="dades.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>

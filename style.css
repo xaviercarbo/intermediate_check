@@ -1,0 +1,741 @@
+:root {
+  --bbc-blue: #007185; /* El blau que has demanat */
+  --brand-blue: #21205f;
+  --light-blue: #e1f5fe;
+  --bbc-dark: #212121;
+  --bbc-red: #bb1919;
+  --bbc-dark: #212121;
+  --bg-light: #f6f6f6;
+  --accent-blue: #007185; /* Color que fa servir el botó 'Add' del model */
+}
+
+.bbc-header {
+  background: var(--brand-blue) !important;
+}
+
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  background: var(--bg-light);
+  margin: 0;
+  color: #333;
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Header estil BBC */
+header.bbc-header {
+  background: var(--bbc-red);
+  color: white;
+  padding: 15px 0;
+  text-align: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+header .logo {
+  font-weight: bold;
+  font-size: 24px;
+  letter-spacing: -1px;
+}
+
+/* Navegació */
+.main-nav {
+  background: white;
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: center;
+}
+
+.main-nav button {
+  background: none;
+  border: none;
+  padding: 15px 25px;
+  cursor: pointer;
+  font-weight: bold;
+  color: #444;
+  border-bottom: 4px solid transparent;
+  transition: all 0.3s;
+}
+
+.main-nav button.active {
+  border-bottom: 4px solid var(--brand-blue);
+  color: var(--brand-blue);
+}
+
+/* Targetes d'exercicis */
+.question-block {
+  background: white;
+  margin-bottom: 25px;
+  padding: 25px;
+  border-radius: 4px;
+  border-bottom: 3px solid #ddd; /* Estil de targeta del model */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.issue-title {
+  color: var(--bbc-red);
+  font-size: 1.2rem;
+  margin-top: 40px;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Estil dels blancs de resposta */
+.drop-zone {
+  border-bottom: 2px solid var(--brand-blue);
+  min-width: 70px;
+  display: inline-block;
+  text-align: center;
+  color: var(--brand-blue);
+  font-weight: bold;
+  cursor: pointer;
+  padding: 0 5px;
+}
+
+.drop-zone.filled {
+  background: #e0f2f1;
+  border-radius: 4px;
+  border-bottom: 2px solid #27ae60;
+}
+
+.options-container {
+  margin: 20px 0;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* Estil de les opcions (Blau suau) */
+.option {
+  background: var(--light-blue);
+  border: 1px solid #b3e5fc;
+  color: #01579b;
+  padding: 8px 15px;
+  border-radius: 6px;
+  cursor: grab;
+  font-weight: 500;
+}
+
+.option:hover {
+  filter: brightness(1.1);
+}
+
+/* Botons de control inferiors */
+.controls {
+  position: sticky;
+  bottom: 0;
+  background: white;
+  padding: 15px;
+  border-top: 1px solid #ddd;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+button.control-btn {
+  background: var(--bbc-dark);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 2px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+button.control-btn:hover {
+  background: #444;
+}
+
+/* Estats de resposta */
+.correct {
+  color: #27ae60;
+  font-weight: bold;
+}
+.incorrect {
+  color: var(--bbc-red);
+  font-weight: bold;
+}
+
+/* Feedback Medalla */
+.feedback-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+.medal-card {
+  background: white;
+  padding: 30px;
+  border-radius: 15px;
+  font-size: 2rem;
+  text-align: center;
+  font-weight: bold;
+  color: var(--brand-blue);
+}
+.medal-anim {
+  font-size: 80px;
+  display: block;
+}
+
+@keyframes popIn {
+  from {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Planificador de revisió */
+.filter-btn {
+  background: #f8f9fa;
+  border: 1px solid #ddd;
+  padding: 6px 15px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+.filter-btn.active {
+  background: var(--bbc-blue);
+  color: white;
+}
+
+.filter-btn:hover:not(.active) {
+  background: #e1e1e1;
+}
+
+/* Scrollbar per a la llista d'unitats */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #999;
+}
+
+/* Look & Feel Millorat */
+.main-sentence {
+  font-size: 1.4rem;
+  line-height: 2.2;
+  color: var(--bbc-dark);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.exercise-number {
+  font-weight: bold;
+  color: #999;
+  margin-right: 10px;
+}
+
+/* Feedback Missatges */
+.msg-ok {
+  color: #27ae60;
+  background: #e8f5e9;
+  padding: 15px;
+  border-radius: 8px;
+  margin-top: 10px;
+}
+.msg-error {
+  color: #e67e22;
+  background: #fff3e0;
+  padding: 15px;
+  border-radius: 8px;
+  margin-top: 10px;
+  border-left: 4px solid #e67e22;
+}
+
+@keyframes popIn {
+  from {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Controls */
+.controls-row {
+  display: flex;
+  gap: 10px;
+  margin-top: 25px;
+  border-top: 1px solid #eee;
+  padding-top: 20px;
+}
+.control-btn.primary {
+  background: var(--brand-blue);
+  color: white;
+  border: none;
+}
+.control-btn.secondary {
+  background: #eee;
+  color: #666;
+  border: none;
+}
+
+/* Progress Bar */
+.progress-bar-bg {
+  background: #eee;
+  height: 10px;
+  border-radius: 5px;
+  overflow: hidden;
+}
+.progress-bar-fill {
+  height: 100%;
+  transition: width 0.5s ease-out;
+}
+
+.btn-reset {
+  margin-top: 20px;
+  background: #fff;
+  color: #bb1919;
+  border: 1px solid #bb1919;
+  padding: 10px;
+  width: 100%;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Targetes d'unitat al Progrés */
+.unit-card {
+  background: #fdfdfd;
+  padding: 15px;
+  margin-bottom: 12px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03);
+  transition: transform 0.2s;
+}
+
+.unit-card:hover {
+  transform: translateX(5px);
+  background: #fff;
+}
+
+/* Píndoles de resum superior */
+.pill {
+  padding: 5px 12px;
+  border-radius: 15px;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+.pill.ok {
+  background: #e3f2fd;
+  color: #2596be;
+}
+.pill.review {
+  background: #fff3e0;
+  color: #e67e22;
+}
+
+/* Animació suau de l'icona */
+.unit-card span {
+  display: inline-block;
+  transition: scale 0.3s;
+}
+.unit-card:hover span {
+  transform: scale(1.2);
+}
+
+/* Gràfic Circular */
+.stats-header-minimal {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 20px 0;
+  border-bottom: 1px solid #eee;
+}
+.circular-chart {
+  display: block;
+  margin: 10px auto;
+  max-width: 100px;
+  max-height: 100px;
+}
+.circle-bg {
+  fill: none;
+  stroke: #eee;
+  stroke-width: 3.8;
+}
+.circle {
+  fill: none;
+  stroke-width: 2.8;
+  stroke-linecap: round;
+  stroke: #2596be;
+  transition: stroke-dasharray 0.3s ease;
+}
+.percentage {
+  fill: #666;
+  font-family: sans-serif;
+  font-size: 0.5em;
+  text-anchor: middle;
+  font-weight: bold;
+}
+
+/* Acordió Issues */
+.issues-accordion {
+  margin-top: 20px;
+}
+.issue-group {
+  border: 1px solid #f0f0f0;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  overflow: hidden;
+}
+.issue-header {
+  background: #fff;
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.issue-header:hover {
+  background: #f9f9f9;
+}
+.issue-icon {
+  font-size: 1.2rem;
+  margin-right: 12px;
+}
+.issue-info {
+  flex-grow: 1;
+}
+.issue-title-text {
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: #444;
+}
+.mini-bar {
+  background: #eee;
+  height: 4px;
+  width: 80px;
+  border-radius: 2px;
+  margin-top: 4px;
+}
+.mini-bar div {
+  background: #2596be;
+  height: 100%;
+  border-radius: 2px;
+}
+.issue-perc {
+  font-weight: bold;
+  color: #2596be;
+  font-size: 0.85rem;
+  margin-left: 10px;
+}
+
+/* Taula Unitats Interna */
+.issue-details {
+  background: #fafafa;
+  padding: 10px;
+  border-top: 1px solid #eee;
+}
+.issue-details.hidden {
+  display: none;
+}
+.unit-table {
+  width: 100%;
+  font-size: 0.8rem;
+  color: #666;
+  border-collapse: collapse;
+}
+.unit-table tr {
+  border-bottom: 1px solid #f0f0f0;
+}
+.unit-table td {
+  padding: 8px 4px;
+}
+
+.pill-stat {
+  background: #f0f7fa;
+  color: #2596be;
+  padding: 5px 15px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  margin-bottom: 5px;
+}
+.btn-reset-simple {
+  width: 100%;
+  background: none;
+  border: none;
+  color: #ccc;
+  font-size: 0.7rem;
+  margin-top: 40px;
+  cursor: pointer;
+}
+
+/* Contenidor de l'Issue */
+.issue-card {
+  border-bottom: 1px solid #f0f0f0;
+  padding: 10px 0;
+}
+
+.issue-main-info {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 6px;
+}
+
+.issue-main-info:hover {
+  background: #f9fbfd;
+}
+
+.issue-bullet {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-right: 12px;
+}
+
+.issue-name {
+  flex-grow: 1;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #444;
+}
+
+.issue-perc {
+  font-weight: bold;
+  color: #2596be;
+  font-size: 0.85rem;
+}
+
+/* Subgrups Interns */
+.issue-sub-groups {
+  padding: 10px 10px 10px 30px;
+  background: #fafafa;
+  border-radius: 0 0 8px 8px;
+}
+
+.issue-sub-groups.hidden {
+  display: none;
+}
+
+.sub-group-title {
+  font-size: 0.7rem;
+  font-weight: bold;
+  margin-top: 15px;
+  margin-bottom: 5px;
+  letter-spacing: 0.5px;
+}
+
+.sub-group-title.orange {
+  color: #e67e22;
+}
+.sub-group-title.blue {
+  color: #2596be;
+}
+.sub-group-title.grey {
+  color: #999;
+}
+
+.unit-item {
+  font-size: 0.8rem;
+  padding: 4px 0;
+  color: #666;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.unit-item.done {
+  color: #2596be;
+  text-decoration: none;
+  opacity: 0.7;
+}
+
+.unit-item:last-child {
+  border-bottom: none;
+}
+/* Contenidor de l'Issue */
+.issue-card {
+  border-bottom: 1px solid #f0f0f0;
+  padding: 10px 0;
+}
+
+.issue-main-info {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 6px;
+}
+
+.issue-main-info:hover {
+  background: #f9fbfd;
+}
+
+.issue-bullet {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-right: 12px;
+}
+
+.issue-name {
+  flex-grow: 1;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #444;
+}
+
+.issue-perc {
+  font-weight: bold;
+  color: #2596be;
+  font-size: 0.85rem;
+}
+
+/* Subgrups Interns */
+.issue-sub-groups {
+  padding: 10px 10px 10px 30px;
+  background: #fafafa;
+  border-radius: 0 0 8px 8px;
+}
+
+.issue-sub-groups.hidden {
+  display: none;
+}
+
+.sub-group-title {
+  font-size: 0.7rem;
+  font-weight: bold;
+  margin-top: 15px;
+  margin-bottom: 5px;
+  letter-spacing: 0.5px;
+}
+
+.sub-group-title.orange {
+  color: #e67e22;
+}
+.sub-group-title.blue {
+  color: #2596be;
+}
+.sub-group-title.grey {
+  color: #999;
+}
+
+.unit-item {
+  font-size: 0.8rem;
+  padding: 4px 0;
+  color: #666;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.unit-item.done {
+  color: #2596be;
+  text-decoration: none;
+  opacity: 0.7;
+}
+
+.unit-item:last-child {
+  border-bottom: none;
+}
+
+.theme-card {
+  border: 1px solid #eee;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  background: white;
+}
+
+.theme-trigger {
+  padding: 12px;
+  cursor: pointer;
+}
+
+.theme-title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.theme-name {
+  font-weight: bold;
+  color: #333;
+  font-size: 0.9rem;
+}
+.theme-badge {
+  font-size: 0.8rem;
+  color: #2596be;
+  background: #f0f7fa;
+  padding: 2px 8px;
+  border-radius: 10px;
+}
+
+.theme-bar {
+  height: 4px;
+  background: #eee;
+  border-radius: 2px;
+  overflow: hidden;
+}
+.theme-bar div {
+  height: 100%;
+  background: #2596be;
+  border-radius: 2px;
+}
+
+.theme-content {
+  padding: 10px;
+  background: #fafafa;
+  border-top: 1px solid #eee;
+}
+
+.theme-content.hidden {
+  display: none;
+}
+
+.unit-group-title {
+  font-size: 0.65rem;
+  font-weight: bold;
+  margin: 10px 0 5px 0;
+}
+.unit-group-title.orange {
+  color: #e67e22;
+}
+.unit-group-title.blue {
+  color: #2596be;
+}
+.unit-group-title.grey {
+  color: #999;
+}
+
+.unit-items-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.unit-tag {
+  background: white;
+  border: 1px solid #ddd;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  color: #555;
+}
+
+.unit-tag small {
+  color: #999;
+  font-size: 0.7rem;
+  margin-left: 4px;
+}
