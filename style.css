@@ -809,3 +809,142 @@ button.control-btn:hover {
   border-color: #fff;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
+.breadcrumb-info {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 15px;
+  font-size: 0.75rem;
+  font-weight: bold;
+}
+
+.label-book {
+  background: #333;
+  color: white;
+  padding: 2px 8px;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+
+.label-topic {
+  background: var(--bbc-blue);
+  color: white;
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.label-unit {
+  color: #555;
+  padding: 2px 0;
+  font-style: italic;
+}
+
+/* Ajustos de colors segons el nivell per a la etiqueta de llibre */
+body.theme-basic .label-book {
+  background: #e53935;
+}
+body.theme-essential .label-book {
+  background: #fb8c00;
+}
+body.theme-intermediate .label-book {
+  background: #1a73e8;
+}
+
+/* Breadcrumbs i Badges de Nivell */
+.breadcrumb-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.badge-nivell {
+  padding: 3px 10px;
+  border-radius: 4px;
+  color: white;
+  font-weight: bold;
+  font-size: 0.75rem;
+}
+
+/* Colors de Cambridge */
+.badge-basic {
+  background-color: #e53935;
+} /* Vermell */
+.badge-essential {
+  background-color: #fb8c00;
+} /* Taronja */
+.badge-intermediate {
+  background-color: #1a73e8;
+} /* Blau */
+
+.text-unitats {
+  font-size: 0.8rem;
+  color: #666;
+  font-style: italic;
+}
+
+/* Dashboard de Sessió */
+.session-dashboard {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 15px;
+}
+
+.stat-pill {
+  flex: 1;
+  font-size: 0.65rem;
+  padding: 4px 6px;
+  border-radius: 12px;
+  text-align: center;
+  background: #f0f0f0;
+  color: #444;
+  border: 1px solid #ddd;
+}
+
+.stat-pill.today {
+  background: #e3f2fd;
+  color: #1a73e8;
+  border-color: #bbdefb;
+}
+.stat-pill.success {
+  background: #e8f5e9;
+  color: #2e7d32;
+  border-color: #c8e6c9;
+}
+.stat-pill.fail {
+  background: #fff3e0;
+  color: #ef6c00;
+  border-color: #ffe0b2;
+}
+.stat-pill b {
+  font-size: 0.8rem;
+  display: block;
+}
+.multi-answer-notice {
+  background-color: #fff9c4; /* Groc suau tipus "post-it" */
+  border-left: 4px solid #fbc02d;
+  padding: 8px 12px;
+  margin: 10px 0;
+  font-size: 0.85rem;
+  color: #5d4037;
+  border-radius: 4px;
+  font-style: italic;
+}
+
+/* Ajust per a les zones de drop quan hi ha una barra / */
+.drop-zone {
+  margin: 0 4px; /* Una mica d'espai al voltant de la barra */
+}
+.text-tema-unitat {
+  font-size: 0.9rem;
+  color: #333;
+}
+
+.text-tema-unitat strong {
+  color: var(--bbc-blue); /* El color blau que fas servir pel tema */
+  margin-right: 5px;
+}
+
+.header-pregunta {
+  margin-bottom: 10px;
+}

@@ -220,7 +220,7 @@ const dades_basic = {
             "D She's wearing",
           ],
           solucions: ["C", "D"],
-          unitats: [3, 22],
+          unitats: [3, 23],
         },
         {
           id: "1.6",
@@ -233,7 +233,7 @@ const dades_basic = {
             "D I don't watching",
           ],
           solucions: ["B"],
-          unitats: [3, 22],
+          unitats: [3, 23],
         },
         {
           id: "1.7",

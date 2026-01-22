@@ -193,24 +193,68 @@ function dibuixarPregunta() {
   const estat = obtenirEstatRepas(q.id);
   localStorage.setItem(`index_${nivellActual}`, indexActual);
 
-  // Preparem els buits: si ja està feta avui, mostrem la resposta o un check
+  // 1. LÒGICA DE TEXT PER UNITATS (Ex: U1: am/is/are)
+  const llistaUnitats = q.unitats || [];
+  const textUnitats = llistaUnitats
+    .map((u) => {
+      const nom =
+        diccionariUnitats && diccionariUnitats[u]
+          ? diccionariUnitats[u]
+          : "Unit " + u;
+      return `U${u}: ${nom}`;
+    })
+    .join(" | ");
+
+  // 2. DASHBOARD DE SÈSSIO (Càlcul de marcadors)
+  let fetesAvui = 0,
+    correctes = 0,
+    aMillorar = 0;
+  preguntesFiltrades.forEach((preg) => {
+    const e = obtenirEstatRepas(preg.id);
+    if (e.fetaAvui) fetesAvui++;
+    const h = historic.filter((i) => i.id === preg.id);
+    if (h.length > 0) {
+      if (h[h.length - 1].correcte) correctes++;
+      else aMillorar++;
+    }
+  });
+  const pendents = preguntesFiltrades.length - fetesAvui;
+
+  // Preparem els buits
   const buits = q.solucions
     .map((s, i) => {
       const resp = estat.ultimaLletra ? estat.ultimaLletra.split(", ")[i] : "";
       const contingut = estat.fetaAvui ? resp || "✓" : "_______";
       return `<span class="drop-zone" id="drop-${q.id}-${i}" ondrop="drop(event)" ondragover="allowDrop(event)" onclick="netejarBuit(this)" data-value="${resp}">${contingut}</span>`;
     })
-    .join(" and ");
+    .join(" / ");
 
   container.innerHTML = `
-        <div class="header-pregunta">
-            <span class="tag-issue">${q.issueTitol}</span>
+        <div class="breadcrumb-info">
+            <span class="badge-nivell badge-${nivellActual}">${nivellActual.toUpperCase()}</span>
+            <span class="text-tema-unitat">
+                <strong>${q.issueTitol}:</strong> ${textUnitats}
+            </span>
+        </div>
+
+        <div class="session-dashboard">
+            <div class="stat-pill neutral"><b>${pendents}</b> Pending</div>
+            <div class="stat-pill today"><b>${fetesAvui}</b> Done today</div>
+            <div class="stat-pill success"><b>${correctes}</b> Passed</div>
+            <div class="stat-pill fail"><b>${aMillorar}</b> To review</div>
+        </div>
+
+        <div class="header-pregunta" style="display: flex; justify-content: flex-end;">
             <span class="tag-counter">Ex. ${indexActual + 1} / ${preguntesFiltrades.length}</span>
         </div>
+        
         <div class="question-block">
             <p class="main-sentence">
-                <span class="exercise-number">${q.id}</span> ${q.text_pre} ${buits} ${q.text_post}
+                <span class="exercise-number">${q.id}</span> 
+                ${q.text_pre} ${buits} ${q.text_post}
             </p>
+            
+            ${q.solucions.length > 1 ? `<div class="multi-answer-notice">💡 Note: This sentence has ${q.solucions.length} correct options.</div>` : ""}
             
             <div class="options-container">
                 ${q.opcions.map((opt) => `<div class="option" draggable="true" ondragstart="drag(event)">${opt}</div>`).join("")}
@@ -481,18 +525,30 @@ window.onload = inicialitzarDades;
 
 function netejarHistoric() {
   const confirmacio = confirm(
-    "Are you sure you want to delete ALL your progress? This action cannot be undone.",
+    "Are you sure you want to delete ALL your progress for " +
+      nivellActual.toUpperCase() +
+      "? This action cannot be undone.",
   );
 
   if (confirmacio) {
-    // Esborrem les claus específiques del nostre projecte
-    localStorage.removeItem("angles_historic");
-    localStorage.removeItem("angles_index_actual");
+    // 1. Borrem les claus específiques d'aquest nivell al navegador
+    localStorage.removeItem(`historic_${nivellActual}`);
+    localStorage.removeItem(`index_${nivellActual}`);
 
-    // Opcional: si vols esborrar-ho tot (incloent vocab builder si en tens)
-    // localStorage.clear();
+    // 2. REINICIEM LES VARIABLES EN MEMÒRIA (L'estat actual de l'App)
+    historic = [];
+    indexActual = 0;
 
-    alert("History cleared successfully.");
-    location.reload(); // Recarreguem per reiniciar l'estat de l'App
+    // 3. RE-INICIALITZEM LES DADES (Això netejarà el Dashboard i les preguntes)
+    inicialitzarDades();
+
+    alert(
+      "Progress for " +
+        nivellActual.toUpperCase() +
+        " has been reset successfully.",
+    );
+
+    // Opcional: Si vols una neteja total de la pantalla
+    canviarVista("PRACTICE");
   }
 }
